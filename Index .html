@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arabian Farms – True Dreams | Pure Organic Farm to Fork</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --green:#2d7a1f;
+    --green-dark:#1a5210;
+    --green-light:#e8f5e3;
+    --orange:#d4700a;
+    --orange-light:#fff3e0;
+    --black:#0a0a0a;
+    --white:#ffffff;
+    --gray:#f7f6f2;
+    --gray-mid:#e8e6df;
+    --text:#1a1a1a;
+    --text-muted:#666;
+    --radius:12px;
+    --radius-lg:20px;
+    --shadow:0 4px 24px rgba(0,0,0,0.09);
+    --shadow-lg:0 8px 40px rgba(0,0,0,0.14);
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+  a{text-decoration:none;color:inherit}
+  img{max-width:100%;display:block}
+  .container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+  /* NAV */
+  nav{background:var(--black);position:sticky;top:0;z-index:999;border-bottom:2px solid var(--orange)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0 20px;max-width:1200px;margin:0 auto;height:72px}
+  .nav-logo{display:flex;align-items:center;gap:12px}
+  .nav-logo img{height:48px;width:auto}
+  .nav-logo-text{display:flex;flex-direction:column}
+  .nav-logo-text .brand{font-size:18px;font-weight:700;color:var(--green);letter-spacing:1px}
+  .nav-logo-text .tagline{font-size:11px;color:var(--orange);letter-spacing:2px;text-transform:uppercase}
+  .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+  .nav-links a{color:#ccc;font-size:14px;font-weight:500;letter-spacing:0.5px;transition:color 0.2s;text-transform:uppercase}
+  .nav-links a:hover{color:var(--orange)}
+  .nav-cta{background:var(--green);color:#fff !important;padding:10px 22px;border-radius:8px;font-weight:600 !important}
+  .nav-cta:hover{background:var(--green-dark) !important;color:#fff !important}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+  .hamburger span{width:24px;height:2px;background:#fff;border-radius:2px;transition:0.3s}
+  .mobile-menu{display:none;background:var(--black);padding:20px;border-top:1px solid #333}
+  .mobile-menu.open{display:block}
+  .mobile-menu a{display:block;color:#ccc;padding:12px 0;border-bottom:1px solid #222;font-size:15px}
+
+  /* HERO */
+  .hero{background:var(--black);min-height:90vh;display:flex;align-items:center;position:relative;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%, rgba(45,122,31,0.15) 0%, transparent 60%),radial-gradient(ellipse at 20% 80%, rgba(212,112,10,0.1) 0%, transparent 50%)}
+  .hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:80px 20px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(45,122,31,0.2);border:1px solid rgba(45,122,31,0.4);color:#7acc5e;padding:8px 16px;border-radius:50px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px}
+  .hero-badge span{width:6px;height:6px;background:#7acc5e;border-radius:50%;display:inline-block}
+  .hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.1;color:#fff;margin-bottom:20px}
+  .hero h1 em{color:var(--green);font-style:normal}
+  .hero p{font-size:17px;color:#aaa;line-height:1.7;margin-bottom:32px;max-width:480px}
+  .hero-stats{display:flex;gap:32px;margin-bottom:40px}
+  .hero-stat .num{font-size:28px;font-weight:800;color:var(--orange)}
+  .hero-stat .label{font-size:12px;color:#888;margin-top:2px}
+  .hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+  .btn-primary{background:var(--green);color:#fff;padding:15px 32px;border-radius:10px;font-weight:700;font-size:15px;transition:0.2s;display:inline-block;letter-spacing:0.5px}
+  .btn-primary:hover{background:var(--green-dark);transform:translateY(-2px)}
+  .btn-outline{border:2px solid rgba(255,255,255,0.2);color:#fff;padding:15px 32px;border-radius:10px;font-weight:600;font-size:15px;transition:0.2s;display:inline-block}
+  .btn-outline:hover{border-color:var(--orange);color:var(--orange)}
+  .hero-visual{display:flex;justify-content:center;align-items:center}
+  .hero-img-wrap{position:relative}
+  .hero-img-wrap img{width:340px;height:340px;object-fit:contain;filter:drop-shadow(0 0 40px rgba(45,122,31,0.4))}
+  .hero-img-card{position:absolute;background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:12px 16px;white-space:nowrap;font-size:13px;font-weight:600;color:#fff}
+  .hero-img-card.card1{top:10%;right:-10px}
+  .hero-img-card.card2{bottom:15%;left:-20px}
+  .card-dot{width:8px;height:8px;background:var(--green);border-radius:50%;display:inline-block;margin-right:6px}
+
+  /* TRUST BAR */
+  .trust-bar{background:var(--green);padding:20px 0}
+  .trust-bar-inner{display:flex;flex-wrap:wrap;justify-content:center;gap:0;max-width:1200px;margin:0 auto}
+  .trust-item{display:flex;align-items:center;gap:12px;padding:12px 32px;border-right:1px solid rgba(255,255,255,0.2);flex:1;min-width:200px;justify-content:center}
+  .trust-item:last-child{border-right:none}
+  .trust-icon{width:40px;height:40px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .trust-icon svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2}
+  .trust-text .t1{font-size:13px;font-weight:700;color:#fff;letter-spacing:0.5px}
+  .trust-text .t2{font-size:11px;color:rgba(255,255,255,0.75)}
+
+  /* SECTION HEADER */
+  .section-header{text-align:center;margin-bottom:60px}
+  .section-tag{display:inline-block;background:var(--green-light);color:var(--green);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:50px;margin-bottom:16px}
+  .section-header h2{font-size:clamp(28px,4vw,44px);font-weight:800;color:var(--black);line-height:1.2}
+  .section-header h2 span{color:var(--green)}
+  .section-header p{color:var(--text-muted);font-size:16px;margin-top:12px;max-width:560px;margin-left:auto;margin-right:auto}
+
+  /* CATEGORIES */
+  .categories{padding:100px 0;background:var(--white)}
+  .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .cat-card{background:var(--gray);border-radius:var(--radius-lg);overflow:hidden;position:relative;cursor:pointer;transition:0.3s;border:2px solid transparent}
+  .cat-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--green)}
+  .cat-card-img{height:200px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#f0ede4}
+  .cat-card-img img{width:100%;height:100%;object-fit:cover;transition:0.4s}
+  .cat-card:hover .cat-card-img img{transform:scale(1.06)}
+  .cat-card-body{padding:20px 24px}
+  .cat-card-body h3{font-size:18px;font-weight:700;color:var(--black);margin-bottom:4px}
+  .cat-card-body p{font-size:13px;color:var(--text-muted)}
+  .cat-arrow{position:absolute;top:16px;right:16px;width:36px;height:36px;background:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transition:0.3s}
+  .cat-card:hover .cat-arrow{opacity:1}
+  .cat-arrow svg{width:16px;height:16px;stroke:var(--green);fill:none;stroke-width:2.5}
+
+  /* WHY US */
+  .why-us{padding:100px 0;background:var(--black)}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .why-text .section-tag{background:rgba(45,122,31,0.2);color:#7acc5e}
+  .why-text h2{font-size:clamp(28px,4vw,44px);font-weight:800;color:#fff;line-height:1.2;margin-bottom:20px}
+  .why-text h2 span{color:var(--green)}
+  .why-text p{color:#aaa;font-size:16px;line-height:1.8;margin-bottom:32px}
+  .why-points{display:flex;flex-direction:column;gap:20px}
+  .why-point{display:flex;gap:16px;align-items:flex-start}
+  .why-point-icon{width:48px;height:48px;background:rgba(45,122,31,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .why-point-icon svg{width:22px;height:22px;fill:none;stroke:#7acc5e;stroke-width:2}
+  .why-point-text h4{font-size:15px;font-weight:700;color:#fff;margin-bottom:4px}
+  .why-point-text p{font-size:13px;color:#888;line-height:1.6}
+  .why-visual{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .why-stat-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:28px 24px}
+  .why-stat-card .num{font-size:40px;font-weight:900;color:var(--orange);margin-bottom:6px}
+  .why-stat-card .label{font-size:13px;color:#aaa;line-height:1.5}
+
+  /* PRODUCTS */
+  .products{padding:100px 0;background:var(--gray)}
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .prod-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--gray-mid);transition:0.3s}
+  .prod-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px);border-color:var(--green)}
+  .prod-img{height:200px;background:#f5f3ee;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+  .prod-img img{width:100%;height:100%;object-fit:cover;transition:0.3s}
+  .prod-card:hover .prod-img img{transform:scale(1.05)}
+  .prod-badge{position:absolute;top:12px;left:12px;background:var(--orange);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;letter-spacing:0.5px}
+  .prod-body{padding:16px}
+  .prod-body h4{font-size:14px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.4}
+  .prod-price{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+  .prod-price .current{font-size:17px;font-weight:800;color:var(--green)}
+  .prod-price .old{font-size:13px;color:#bbb;text-decoration:line-through}
+  .prod-btn{width:100%;background:var(--green);color:#fff;border:none;padding:10px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:0.2s;text-align:center;display:block}
+  .prod-btn:hover{background:var(--green-dark)}
+
+  /* BRANCHES */
+  .branches{padding:100px 0;background:var(--white)}
+  .branch-map{background:var(--green);border-radius:var(--radius-lg);padding:60px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;color:#fff}
+  .branch-map h2{font-size:clamp(28px,3.5vw,42px);font-weight:800;margin-bottom:16px}
+  .branch-map h2 span{color:var(--orange-light);color:#ffcc80}
+  .branch-map p{font-size:16px;color:rgba(255,255,255,0.8);line-height:1.7;margin-bottom:32px}
+  .branch-count{font-size:72px;font-weight:900;color:#fff;line-height:1;margin-bottom:8px}
+  .branch-count span{color:#ffcc80}
+  .branch-sub{font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:32px}
+  .cities-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .city-tag{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:10px 16px;font-size:13px;font-weight:600;text-align:center;backdrop-filter:blur(10px)}
+
+  /* TESTIMONIALS */
+  .testimonials{padding:100px 0;background:var(--gray)}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .testi-card{background:var(--white);border-radius:var(--radius-lg);padding:32px;border:1px solid var(--gray-mid);transition:0.3s}
+  .testi-card:hover{box-shadow:var(--shadow);border-color:var(--green)}
+  .stars{color:var(--orange);font-size:18px;margin-bottom:16px;letter-spacing:2px}
+  .testi-text{font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:24px;font-style:italic}
+  .testi-author{display:flex;align-items:center;gap:12px}
+  .testi-avatar{width:44px;height:44px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;flex-shrink:0}
+  .testi-name{font-size:14px;font-weight:700;color:var(--text)}
+  .testi-city{font-size:12px;color:var(--text-muted)}
+
+  /* CTA */
+  .cta-section{padding:80px 0;background:var(--black)}
+  .cta-inner{text-align:center;max-width:680px;margin:0 auto;padding:0 20px}
+  .cta-inner h2{font-size:clamp(28px,4vw,48px);font-weight:800;color:#fff;margin-bottom:16px}
+  .cta-inner h2 span{color:var(--green)}
+  .cta-inner p{color:#aaa;font-size:16px;margin-bottom:36px;line-height:1.7}
+  .cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+  /* FOOTER */
+  footer{background:#050505;color:#aaa;padding:80px 0 32px}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:60px}
+  .footer-brand img{height:52px;margin-bottom:20px}
+  .footer-brand p{font-size:14px;line-height:1.8;color:#777;margin-bottom:24px}
+  .social-links{display:flex;gap:12px}
+  .social-link{width:38px;height:38px;border:1px solid #333;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:0.2s;color:#777;font-size:14px;font-weight:700}
+  .social-link:hover{border-color:var(--green);color:var(--green)}
+  .footer-col h4{font-size:14px;font-weight:700;color:#fff;margin-bottom:20px;letter-spacing:0.5px;text-transform:uppercase}
+  .footer-col ul{list-style:none}
+  .footer-col li{margin-bottom:10px}
+  .footer-col a{font-size:14px;color:#777;transition:0.2s}
+  .footer-col a:hover{color:var(--orange)}
+  .footer-bottom{border-top:1px solid #1a1a1a;padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap;gap:16px}
+  .footer-bottom p{font-size:13px;color:#555}
+  .footer-bottom span{color:var(--green)}
+
+  /* ANNOUNCEMENT BAR */
+  .announce-bar{background:var(--orange);padding:10px;text-align:center;font-size:13px;color:#fff;font-weight:600;letter-spacing:0.5px}
+  .announce-bar a{color:#fff;text-decoration:underline}
+
+  @media(max-width:1024px){
+    .cat-grid{grid-template-columns:repeat(2,1fr)}
+    .prod-grid{grid-template-columns:repeat(2,1fr)}
+    .footer-grid{grid-template-columns:1fr 1fr}
+    .why-grid{gap:40px}
+    .why-visual{margin-top:20px}
+  }
+  @media(max-width:768px){
+    .nav-links{display:none}
+    .hamburger{display:flex}
+    .hero-content{grid-template-columns:1fr;gap:40px;padding:60px 20px;text-align:center}
+    .hero-visual{justify-content:center}
+    .hero-img-wrap img{width:260px;height:260px}
+    .hero-stats{justify-content:center}
+    .hero-btns{justify-content:center}
+    .hero-badge{margin:0 auto 24px}
+    .hero p{margin:0 auto 32px}
+    .trust-bar-inner{flex-direction:column;align-items:stretch}
+    .trust-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.15)}
+    .trust-item:last-child{border-bottom:none}
+    .why-grid{grid-template-columns:1fr}
+    .why-visual{grid-template-columns:repeat(2,1fr)}
+    .cat-grid{grid-template-columns:1fr}
+    .prod-grid{grid-template-columns:repeat(2,1fr)}
+    .branch-map{grid-template-columns:1fr;padding:36px 24px}
+    .testi-grid{grid-template-columns:1fr}
+    .footer-grid{grid-template-columns:1fr}
+    .footer-bottom{flex-direction:column;text-align:center}
+    .cities-grid{grid-template-columns:repeat(2,1fr)}
+    .hero-img-card{display:none}
+  }
+  @media(max-width:480px){
+    .prod-grid{grid-template-columns:1fr}
+    .why-visual{grid-template-columns:1fr}
+    .hero-stats{gap:16px}
+  }
+</style>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="announce-bar">
+  🌿 Free delivery on orders above Rs. 5,000 &nbsp;|&nbsp; 65+ branches across Pakistan &nbsp;|&nbsp; <a href="https://arabianfarms.co/shop">Shop Now →</a>
+</div>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="https://arabianfarms.co/wp-content/uploads/2019/07/logo-leaf-new.png" alt="Arabian Farms Logo" onerror="this.style.display='none'">
+      <div class="nav-logo-text">
+        <span class="brand">ARABIAN FARMS</span>
+        <span class="tagline">True Dreams</span>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#categories">Shop</a></li>
+      <li><a href="#branches">Our Stores</a></li>
+      <li><a href="https://arabianfarms.co/about">About</a></li>
+      <li><a href="https://arabianfarms.co/contact" class="nav-cta">Contact Us</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#">Home</a>
+    <a href="#categories">Shop</a>
+    <a href="#branches">Our Stores</a>
+    <a href="https://arabianfarms.co/about">About</a>
+    <a href="https://arabianfarms.co/contact">Contact Us</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content container">
+    <div>
+      <div class="hero-badge"><span></span> Pakistan's #1 Organic Farm</div>
+      <h1>From Our <em>Farm</em> To Your Fork — <em>Purely</em> Natural</h1>
+      <p>Arabian Farms brings you 100% organic, desi, and pure grocery products straight from nature. No chemicals, no compromise — just real food for a healthier life.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">65+</div><div class="label">Branches Nationwide</div></div>
+        <div class="hero-stat"><div class="num">100+</div><div class="label">Organic Products</div></div>
+        <div class="hero-stat"><div class="num">100%</div><div class="label">Certified Organic</div></div>
+      </div>
+      <div class="hero-btns">
+        <a href="#categories" class="btn-primary">Shop Now →</a>
+        <a href="https://arabianfarms.co/about" class="btn-outline">Our Story</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrap">
+        <img src="https://arabianfarms.co/wp-content/uploads/2019/07/logo-leaf-new.png" alt="Arabian Farms" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22><circle cx=%22100%22 cy=%22100%22 r=%2280%22 fill=%22%232d7a1f22%22 stroke=%22%232d7a1f%22 stroke-width=%222%22/></svg>'">
+        <div class="hero-img-card card1"><span class="card-dot"></span>Certified Organic</div>
+        <div class="hero-img-card card2"><span class="card-dot"></span>Farm to Fork</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Bar -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></div>
+      <div class="trust-text"><div class="t1">100% Certified Organic</div><div class="t2">Lab tested, nature approved</div></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg></div>
+      <div class="trust-text"><div class="t1">Free Delivery</div><div class="t2">On orders above Rs. 5,000</div></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+      <div class="trust-text"><div class="t1">Lowest Prices</div><div class="t2">Direct from farm savings</div></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div>
+      <div class="trust-text"><div class="t1">Easy Returns</div><div class="t2">No questions asked policy</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Categories -->
+<section class="categories" id="categories">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Our Range</div>
+      <h2>Shop by <span>Category</span></h2>
+      <p>Handpicked organic products across every essential grocery category</p>
+    </div>
+    <div class="cat-grid">
+      <a href="https://arabianfarms.co/product-category/dry-fruits/" class="cat-card">
+        <div class="cat-card-img">
+          <img src="https://arabianfarms.co/wp-content/uploads/2026/02/Dry-Fruits-Webp-4.png" alt="Dry Fruits" onerror="this.parentElement.style.background='#e8e0d0'">
+        </div>
+        <div class="cat-card-body">
+          <h3>Dry Fruits</h3>
+          <p>19 premium products &nbsp; →</p>
+        </div>
+        <div class="cat-arrow"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></div>
+      </a>
+      <a href="https://arabianfarms.co/product-category/kitchen-essentials/" class="cat-card">
+        <div class="cat-card-img">
+          <img src="https://arabianfarms.co/wp-content/uploads/2026/02/KITCHENESSENTIALS-WEBP-2.png" alt="Kitchen Essentials" onerror="this.parentElement.style.background='#e0e8d0'">
+        </div>
+        <div class="cat-card-body">
+          <h3>Kitchen Essentials</h3>
+          <p>19 premium products &nbsp; →</p>
+        </div>
+        <div class="cat-arrow"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></div>
+      </a>
+      <a href="https://arabianfarms.co/product-category/organic-oil/" class="cat-card">
+        <div class="cat-card-img">
+          <img src="https://arabianfarms.co/wp-content/uploads/2026/02/Oils-Webp.png" alt="Organic Oil" onerror="this.parentElement.style.background='#f5f0d8'">
+        </div>
+        <div class="cat-card-body">
+          <h3>Organic Oils</h3>
+          <p>15 premium products &nbsp; →</p>
+        </div>
+        <div class="cat-arrow"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></div>
+      </a>
+      <a href="https://arabianfarms.co/product-category/uncategorized/" class="cat-card">
+        <div class="cat-card-img">
+          <img src="https://arabianfarms.co/wp-content/uploads/2026/02/Pickles-Webp.png" alt="Pickles" onerror="this.parentElement.style.background='#e8f0d8'">
+        </div>
+        <div class="cat-card-body">
+          <h3>Pickles</h3>
+          <p>6 premium products &nbsp; →</p>
+        </div>
+        <div class="cat-arrow"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></div>
+      </a>
+      <a href="https://arabianfarms.co/product-category/pulses/" class="cat-card">
+        <div class="cat-card-img">
+          <img src="https://arabianfarms.co/wp-content/uploads/2026/02/PULSES-WEBP-2.png" alt="Pulses" onerror="this.parentElement.style.background='#f0e8d8'">
+        </div>
+        <div class="cat-card-body">
+          <h3>Pulses & Lentils</h3>
+          <p>24 premium products &nbsp; →</p>
+        </div>
+        <div class="cat-arrow"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></div>
+      </a>
+      <a href="https://arabianfarms.co/product-category/spices/" class="cat-card">
+        <div class="cat-card-img">
+          <img src="https://arabianfarms.co/wp-content/uploads/2026/02/IMG_0951-2.png" alt="Spices" onerror="this.parentElement.style.background='#f8e8d0'">
+        </div>
+        <div class="cat-card-body">
+          <h3>Spices & Masala</h3>
+          <p>18 premium products &nbsp; →</p>
+        </div>
+        <div class="cat-arrow"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Why Us -->
+<section class="why-us">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-text">
+        <div class="section-tag">Why Arabian Farms</div>
+        <h2>Pakistan's Pioneer in <span>Organic</span> Grocery</h2>
+        <p>We started with a dream to bring pure, desi, and organic food to every Pakistani household. Today, with 65+ stores nationwide, we're the largest organic farm-to-fork grocery chain in the country.</p>
+        <div class="why-points">
+          <div class="why-point">
+            <div class="why-point-icon"><svg viewBox="0 0 24 24"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg></div>
+            <div class="why-point-text"><h4>100% Desi & Pure</h4><p>No artificial additives, preservatives, or GMO ingredients — ever.</p></div>
+          </div>
+          <div class="why-point">
+            <div class="why-point-icon"><svg viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg></div>
+            <div class="why-point-text"><h4>Direct Farm Sourcing</h4><p>We cut out the middleman — straight from trusted farms to your home.</p></div>
+          </div>
+          <div class="why-point">
+            <div class="why-point-icon"><svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+            <div class="why-point-text"><h4>65+ Stores Nationwide</h4><p>Present in Karachi, Lahore, Islamabad, Peshawar, Multan and 30+ more cities.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="why-visual">
+        <div class="why-stat-card"><div class="num">65+</div><div class="label">Branches across Pakistan in 35+ cities</div></div>
+        <div class="why-stat-card"><div class="num">100+</div><div class="label">Unique organic product SKUs</div></div>
+        <div class="why-stat-card"><div class="num">0%</div><div class="label">Artificial additives or preservatives</div></div>
+        <div class="why-stat-card"><div class="num">∞</div><div class="label">Commitment to pure, desi quality</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products -->
+<section class="products" id="products">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Bestsellers</div>
+      <h2>Featured <span>Products</span></h2>
+      <p>Our most loved organic products at the best prices</p>
+    </div>
+    <div class="prod-grid">
+      <div class="prod-card">
+        <div class="prod-img">
+          <img src="https://arabianfarms.co/wp-content/uploads/2025/08/Wheat-Flour-Atta-1-1-1000x1000.png" alt="Wheat Flour">
+          <div class="prod-badge">SALE</div>
+        </div>
+        <div class="prod-body">
+          <h4>Arabian Stone Grinded Wheat Flour (Atta)</h4>
+          <div class="prod-price"><span class="current">₨ 900</span><span class="old">₨ 1,208</span></div>
+          <a href="https://arabianfarms.co/product/arabian-stone-grinded-wheat-flour-atta/" class="prod-btn">Add to Cart</a>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">
+          <img src="https://arabianfarms.co/wp-content/uploads/2024/12/IMG-20241208-WA0001-1000x1000.jpg" alt="Canola Oil">
+          <div class="prod-badge">SALE</div>
+        </div>
+        <div class="prod-body">
+          <h4>Arabian Canola Oil – 1 Liter</h4>
+          <div class="prod-price"><span class="current">₨ 894</span><span class="old">₨ 1,056</span></div>
+          <a href="https://arabianfarms.co/product/arabian-canola-oil-1-liter/" class="prod-btn">Add to Cart</a>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">
+          <img src="https://arabianfarms.co/wp-content/uploads/2025/08/Rice-1-2-1000x1000.png" alt="Basmati Rice">
+          <div class="prod-badge">SALE</div>
+        </div>
+        <div class="prod-body">
+          <h4>Arabian Double Steam Basmati Rice</h4>
+          <div class="prod-price"><span class="current">₨ 462</span><span class="old">₨ 544</span></div>
+          <a href="https://arabianfarms.co/product/arabian-double-steam-basmati-rice/" class="prod-btn">Add to Cart</a>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">
+          <img src="https://arabianfarms.co/wp-content/uploads/2025/04/5-1000x1000.webp" alt="Biryani Masala">
+          <div class="prod-badge">SALE</div>
+        </div>
+        <div class="prod-body">
+          <h4>Arabian Organic Biryani Masala – 50g</h4>
+          <div class="prod-price"><span class="current">₨ 199</span><span class="old">₨ 250</span></div>
+          <a href="https://arabianfarms.co/product/arabian-organic-biryani-masala/" class="prod-btn">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px">
+      <a href="https://arabianfarms.co/shop" class="btn-primary" style="background:var(--green);color:#fff;padding:16px 40px;border-radius:12px;font-weight:700;font-size:15px;display:inline-block">View All Products →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Branches -->
+<section class="branches" id="branches">
+  <div class="container">
+    <div class="branch-map">
+      <div>
+        <div class="branch-count">65<span>+</span></div>
+        <div class="branch-sub">Branches across Pakistan</div>
+        <h2>Find Us <span>Near You</span></h2>
+        <p>From major metropolitan cities to growing towns — Arabian Farms is expanding every month, bringing organic goodness closer to you.</p>
+        <a href="https://arabianfarms.co/store" style="display:inline-block;background:#fff;color:var(--green);padding:14px 30px;border-radius:10px;font-weight:700;font-size:14px;margin-top:8px">Find Nearest Store →</a>
+      </div>
+      <div>
+        <p style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;font-weight:600">Cities We Serve</p>
+        <div class="cities-grid">
+          <div class="city-tag">Karachi</div>
+          <div class="city-tag">Lahore</div>
+          <div class="city-tag">Islamabad</div>
+          <div class="city-tag">Rawalpindi</div>
+          <div class="city-tag">Multan</div>
+          <div class="city-tag">Peshawar</div>
+          <div class="city-tag">Faisalabad</div>
+          <div class="city-tag">Quetta</div>
+          <div class="city-tag">Hyderabad</div>
+          <div class="city-tag">Sialkot</div>
+          <div class="city-tag">Gujranwala</div>
+          <div class="city-tag">+ 30 More</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Customer Love</div>
+      <h2>What Our <span>Customers Say</span></h2>
+      <p>Real reviews from families who've made the organic switch with us</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"I've been buying from Arabian Farms for 2 years now. The quality of their desi ghee and spices is unmatched. You can truly taste the difference when food is organic."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SA</div>
+          <div><div class="testi-name">Sara Ahmed</div><div class="testi-city">Lahore</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Finally an organic store that's actually affordable! Their pulses and rice are the best I've found in Karachi. Free delivery is a great bonus."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:var(--orange)">MK</div>
+          <div><div class="testi-name">Mohammad Khan</div><div class="testi-city">Karachi</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"The dry fruits collection is exceptional — I gift these to family every Eid. Pure, fresh, and packaged beautifully. Arabian Farms is Pakistan's pride."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#7c5c3a">FN</div>
+          <div><div class="testi-name">Fatima Noor</div><div class="testi-city">Islamabad</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2>Start Living <span>Organically</span> Today</h2>
+    <p>Join hundreds of thousands of Pakistani families who trust Arabian Farms for pure, desi, organic groceries delivered to their doorstep.</p>
+    <div class="cta-btns">
+      <a href="https://arabianfarms.co/shop" class="btn-primary">Shop All Products →</a>
+      <a href="https://arabianfarms.co/store" class="btn-outline">Find a Store</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://arabianfarms.co/wp-content/uploads/2019/07/logo-leaf-new.png" alt="Arabian Farms" onerror="this.style.display='none'">
+        <p>Arabia Farms — Pakistan's pioneer organic farm-to-fork grocery chain. Pure, desi, and organic since day one. Serving 65+ cities across Pakistan.</p>
+        <div class="social-links">
+          <a href="https://facebook.com/arabianfarms" class="social-link">f</a>
+          <a href="https://instagram.com/arabianfarms" class="social-link">in</a>
+          <a href="https://wa.me/92" class="social-link">wa</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="https://arabianfarms.co/product-category/dry-fruits/">Dry Fruits</a></li>
+          <li><a href="https://arabianfarms.co/product-category/kitchen-essentials/">Kitchen Essentials</a></li>
+          <li><a href="https://arabianfarms.co/product-category/organic-oil/">Organic Oils</a></li>
+          <li><a href="https://arabianfarms.co/product-category/pulses/">Pulses</a></li>
+          <li><a href="https://arabianfarms.co/product-category/spices/">Spices</a></li>
+          <li><a href="https://arabianfarms.co/product-category/uncategorized/">Pickles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="https://arabianfarms.co/about">About Us</a></li>
+          <li><a href="https://arabianfarms.co/store">Our Stores</a></li>
+          <li><a href="https://arabianfarms.co/contact">Contact</a></li>
+          <li><a href="https://arabianfarms.co/privacy-policy">Privacy Policy</a></li>
+          <li><a href="https://arabianfarms.co/refund_returns">Return Policy</a></li>
+          <li><a href="https://arabianfarms.co/terms-conditions">Terms</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">Pakistan Nationwide</a></li>
+          <li><a href="https://arabianfarms.co/contact">Get in Touch</a></li>
+          <li><a href="https://arabianfarms.co/shipping-policy">Shipping Policy</a></li>
+          <li><a href="https://arabianfarms.co/my-account">My Account</a></li>
+          <li><a href="https://arabianfarms.co/cart">Cart</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 <span>Arabian Farms</span>. All rights reserved. Pakistan's #1 Organic Grocery.</p>
+      <p>Designed with <span>♥</span> for a healthier Pakistan</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu(){
+    var m=document.getElementById('mobileMenu');
+    m.classList.toggle('open');
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var target=document.querySelector(this.getAttribute('href'));
+      if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}
+      document.getElementById('mobileMenu').classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>
